@@ -25,7 +25,6 @@ export default function HomeScreen() {
         );
         return;
       }
-
       // TODO 3: Request the current device location.
       const currentLocation = await Location.getCurrentPositionAsync({});
 
