@@ -16,12 +16,21 @@ export default function HomeScreen() {
 
     try {
       // TODO 1: Request foreground location permission and save status.
+      const { status } = await Location.requestForegroundPermissionsAsync();
 
       // TODO 2: If permission is not granted, show a clear message and return.
+      if (status !== 'granted') {
+        setErrorMessage(
+          'Location permission was denied. Please allow location access or choose a city below.'
+        );
+        return;
+      }
 
       // TODO 3: Request the current device location.
+      const currentLocation = await Location.getCurrentPositionAsync({});
 
       // TODO 4: Save the returned location with setLocation().
+      setLocation(currentLocation);
     }
     catch (error) {
       setErrorMessage('StayFinder could not determine your location. Try again or choose a city below.');
